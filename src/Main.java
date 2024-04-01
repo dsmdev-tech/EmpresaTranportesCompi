@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -8,6 +10,7 @@ public class Main {
     private static int s6, s8;
     private static double s10;
     private static TipoMotor s7;
+    private static LocalDate fechaInicio;
 
     public static void main(String[] args) {
 
@@ -18,13 +21,13 @@ public class Main {
         Cliente cliente2 = new Cliente("María", "González", "maria@example.com", "87654321B", 987654321, 658765421);
         Cliente cliente3 = new Cliente("Pedro", "Sánchez", "pedro@example.com", "56789012C", 567890123, 980123456);
         Cliente cliente4 = new Cliente("Laura", "Martínez", "laura@example.com", "34567890D", 345678901, 321321098);
-        Cliente cliente5 = new Cliente("Ana", "López", "ana@example.com", "90123456E", 901234567, 2109210987);
+        Cliente cliente5 = new Cliente("Ana", "López", "ana@example.com", "33", 901234567, 2109210987);
         e.addCliente(cliente1);
         e.addCliente(cliente2);
         e.addCliente(cliente3);
         e.addCliente(cliente4);
         e.addCliente(cliente5);
-        Coche coche1 = new Coche("1234ABC", "Corsa", "Opel", 50000, 50, TipoMotor.GASOLINA, 5, 5, 300, TipoCoche.UTILITARIO);
+        Coche coche1 = new Coche("22", "Corsa", "Opel", 50000, 50, TipoMotor.GASOLINA, 5, 5, 300, TipoCoche.UTILITARIO);
         Coche coche2 = new Coche("5678XYZ", "Astra", "Opel", 70000, 60, TipoMotor.DIESEL, 5, 5, 350, TipoCoche.UTILITARIO);
         Coche coche3 = new Coche("9876ZYX", "Golf", "Volkswagen", 60000, 70, TipoMotor.ELECTRICO, 5, 5, 320, TipoCoche.BERLINA);
         Coche coche4 = new Coche("4321CBA", "Civic", "Honda", 80000, 65, TipoMotor.HIBRIDO, 5, 5, 310, TipoCoche.SUV);
@@ -67,7 +70,7 @@ public class Main {
             System.out.println("2. Dar de alta un cliente");
             System.out.println("3. Alquilar un vehículo para un cliente determinado");
             System.out.println("4. Mostrar una lista de vehículos");
-            System.out.println("5. Precio del vehículo");
+            System.out.println("5. Entrega de vehículo");
             System.out.println("6. Salir");
             System.out.println("Selecciona una opción (1-6): ");
             System.out.println("\n*****************************************************************\n");
@@ -87,7 +90,7 @@ public class Main {
                 case 3:
                     System.out.println("\nHas seleccionado la opción 3. Alquilar un vehículo para un cliente determinado");
                     alquilarVehiculo();
-                    e.alquilarVehiculoCliente(op, s1, s6);
+                    e.alquilarVehiculoCliente(op, s1, s6, fechaInicio);
                     System.out.println("\nVehiculo reservado correctamente");
                     break;
                 case 4:
@@ -141,9 +144,9 @@ public class Main {
                     }
                     break;
                 case 5:
-                    System.out.println("\nHas seleccionado la opción 5. Precio a pagar del vehículo");
+                    System.out.println("\nHas seleccionado la opción 5. Entrega de vehículo");
                     precioAPagar();
-                    float precioFinal = e.price(op, s3, s6, s8);
+                    float precioFinal = e.price(op, s3, s6);
                     System.out.println("\n\nEl precio a pagar es de " + precioFinal + " €");
                     break;
                 case 6:
@@ -205,6 +208,8 @@ public class Main {
         s1 = sc.nextLine();
         System.out.print("\nIntroduce los días que necesitas alquilar el coche: ");
         s6 = Integer.parseInt(sc.nextLine());
+        System.out.print("\nIntroduce la fecha de inicio del alquiler (dd-MM-yyyy): ");
+        fechaInicio = LocalDate.parse((sc.nextLine()), DateTimeFormatter.ofPattern("dd-MM-yyyy"));
     }
 
     private static void listadoCoche() {

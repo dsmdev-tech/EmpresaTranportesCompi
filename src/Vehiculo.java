@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+
 public class Vehiculo {
 
     protected String matricula;
@@ -8,7 +10,10 @@ public class Vehiculo {
     protected TipoMotor tipomotor;
     //Dias alquilados
     protected int diasAlquilados;
-    protected String dniCliente;
+    protected LocalDate fechaInicioAlquiler;
+    protected  Cliente miCliente;
+    //protected Cliente micliente;
+    //Cambiar el string por cliente me garantiza tener la referencia
 
     public Vehiculo(String matricula, String modelo, String marca, int kmRecorridos, int precioDia, TipoMotor tipomotor) {
         this.matricula = matricula;
@@ -18,7 +23,9 @@ public class Vehiculo {
         this.precioDia = precioDia;
         this.tipomotor = tipomotor;
         diasAlquilados = 0;
-        dniCliente = "";
+        //dniCliente = "";
+        miCliente = null;
+        fechaInicioAlquiler = null;
     }
 
     public int getDiasAlquilados() {
@@ -29,16 +36,24 @@ public class Vehiculo {
         this.diasAlquilados = diasAlquilados;
     }
 
-    public String getDniCliente() {
-        return dniCliente;
-    }
-
-    public void setDniCliente(String dniCliente) {
-        this.dniCliente = dniCliente;
-    }
-
     public TipoMotor getTipomotor() {
         return tipomotor;
+    }
+
+    public LocalDate getFechaInicioAlquiler() {
+        return fechaInicioAlquiler;
+    }
+
+    public void setFechaInicioAlquiler(LocalDate fechaInicioAlquiler) {
+        this.fechaInicioAlquiler = fechaInicioAlquiler;
+    }
+
+    public Cliente getMiCliente() {
+        return miCliente;
+    }
+
+    public void setMiCliente(Cliente miCliente) {
+        this.miCliente = miCliente;
     }
 
     @Override
@@ -51,7 +66,8 @@ public class Vehiculo {
                 ", precioDia=" + precioDia +
                 ", tipomotor=" + tipomotor +
                 ", diasAlquilados=" + diasAlquilados +
-                ", dniCliente='" + dniCliente + '\'' +
+                ", fechaInicioAlquiler=" + fechaInicioAlquiler +
+                ", miCliente=" + miCliente +
                 '}';
     }
 }
