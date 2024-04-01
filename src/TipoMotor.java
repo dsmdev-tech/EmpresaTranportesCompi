@@ -1,0 +1,3 @@
+public enum TipoMotor {
+    ELECTRICO, HIBRIDO_ENCHUFABLE, HIBRIDO, GASOLINA, DIESEL;
+}
